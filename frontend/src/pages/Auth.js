@@ -1,9 +1,7 @@
 import React, {useContext, useState} from 'react';
-import {Container, Form} from "react-bootstrap";
-import Card from "react-bootstrap/Card";
+import { Container, Form, Card } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import {NavLink, useLocation, useHistory} from "react-router-dom";
+import {NavLink, useLocation, useNavigate} from "react-router-dom";
 import {LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE} from "../utils/consts";
 import {login, registration} from "../http/userAPI";
 import {observer} from "mobx-react-lite";
@@ -12,7 +10,7 @@ import {Context} from "../index";
 const Auth = observer(() => {
     const {user} = useContext(Context)
     const location = useLocation()
-    const history = useHistory()
+    const navigate = useNavigate()
     const isLogin = location.pathname === LOGIN_ROUTE
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -27,7 +25,7 @@ const Auth = observer(() => {
             }
             user.setUser(user)
             user.setIsAuth(true)
-            history.push(SHOP_ROUTE)
+            navigate.push(SHOP_ROUTE)
         } catch (e) {
             alert(e.response.data.message)
         }
@@ -55,7 +53,7 @@ const Auth = observer(() => {
                         onChange={e => setPassword(e.target.value)}
                         type="password"
                     />
-                    <Row className="d-flex justify-content-between mt-3 pl-3 pr-3">
+                    <Form className="d-flex justify-content-between mt-3 pl-3 pr-3">
                         {isLogin ?
                             <div>
                                 Нет аккаунта? <NavLink to={REGISTRATION_ROUTE}>Зарегистрируйся!</NavLink>
@@ -71,7 +69,7 @@ const Auth = observer(() => {
                         >
                             {isLogin ? 'Войти' : 'Регистрация'}
                         </Button>
-                    </Row>
+                    </Form>
 
                 </Form>
             </Card>
