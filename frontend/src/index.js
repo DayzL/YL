@@ -1,10 +1,10 @@
-import React, { createContext } from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import UserStore from "./store/UserStore";
-import DeviceStore from "./store/DeviceStore";
+import React, {createContext} from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App'
+import UserStore from './store/UserStore'
+import DeviceStore from './store/DeviceStore'
 
-export const Context = createContext(null);
+export const Context = createContext(null)
 
 // createRoot(
 //   <Context.Provider
@@ -17,7 +17,7 @@ export const Context = createContext(null);
 //   </Context.Provider>,
 //   document.getElementById("root")
 // );
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <Context.Provider
     value={{
@@ -26,8 +26,8 @@ root.render(
     }}
   >
     <App />
-  </Context.Provider>
-);
+  </Context.Provider>,
+)
 
 // import ReactDOM from 'react-dom'
 // ReactDom.render(<h1>Your App</h1>, document.getElementById('root'))
